@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class MoviesGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MoviesGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     var movies = [[String:Any]]()
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class MoviesGridViewController: UIViewController, UICollectionViewDataSource, UI
         
         layout.minimumLineSpacing = 4
         layout.minimumInteritemSpacing = 4
-        let width = view.frame.size.width
+        let width = (view.frame.size.width - 4) / 2
         layout.itemSize = CGSize(width: width, height: width * 3/2)
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
