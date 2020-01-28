@@ -19,7 +19,7 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 <img src="https://media.giphy.com/media/llryRjI4jMyv4ZiP61/giphy.gif" width=250><br>
 
 ### Notes
-Describe any challenges encountered while building the app.
+I was stuggliung with implementing the Collection View layout as it wouldn't be the right size even though I had set the height and width, later I found out the relations weren't configured correctly and so I had to redo thge section to make it work correctly. I was also challenged when I had to parse the movie ID to get a JSON and then retrieve the the trailer key and then make a call to youtube.  
 
 ---
 
