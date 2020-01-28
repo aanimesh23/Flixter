@@ -22,7 +22,7 @@ class MoviesGridViewController: UIViewController, UICollectionViewDataSource, UI
         
         layout.minimumLineSpacing = 4
         layout.minimumInteritemSpacing = 4
-        let width = (view.frame.size.width - 4) / 2
+        let width = (view.frame.size.width - 8) / 2
         layout.itemSize = CGSize(width: width, height: width * 3/2)
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
@@ -61,6 +61,19 @@ class MoviesGridViewController: UIViewController, UICollectionViewDataSource, UI
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! MovieGridCell
+        let indexPath = collectionView.indexPath(for: cell)!
+        let movie = movies[indexPath.item]
+        
+        let vc = segue.destination as! MovieDetailsViewController
+        vc.movie = movie
+        
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -20,12 +20,20 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap1 = UITapGestureRecognizer(target: self, action:  #selector(didTapPoster(sender:)))
         
+        let tap2 = UITapGestureRecognizer(target: self, action:  #selector(didTapBackdrop(sender:)))
         
-        titleLabel.text = movie["title"] as! String
+        backdropView.isUserInteractionEnabled = true
+        backdropView.addGestureRecognizer(tap2)
+        
+        posterView.isUserInteractionEnabled = true
+        posterView.addGestureRecognizer(tap1)
+        
+        titleLabel.text = (movie["title"] as! String)
         titleLabel.sizeToFit()
         titleLabel.textAlignment = .center
-        synopsisLabel.text = movie["overview"] as! String
+        synopsisLabel.text = (movie["overview"] as! String)
         synopsisLabel.sizeToFit()
         let baseURL = "https://image.tmdb.org/t/p/w185"
         let posterPath = movie["poster_path"] as! String
@@ -38,7 +46,21 @@ class MovieDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func didTapPoster(sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "trailerSegue", sender: sender)
+    }
+    
+    @IBAction func didTapBackdrop(sender: Any) {
+        performSegue(withIdentifier: "trailerSegue", sender: sender)
+        //performSegue(withIdentifier: "firstSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! TrailerViewController
+        
+        vc.movie = self.movie
+    }
+    
     /*
     // MARK: - Navigation
 
